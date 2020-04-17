@@ -26,12 +26,9 @@ const port = process.env.PORT || 8001
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 
-app.use(morgan('dev'))
-
-app.use(morgan('common', {
+app.use(morgan(':method :url :status :response-time ms', {
     stream: fs.createWriteStream(path.join(__dirname, 'logs'))
 }))
-
 
 mongoose.connect(db, { 
     useNewUrlParser: true, 
